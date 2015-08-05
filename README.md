@@ -21,3 +21,6 @@ Awesome design by [@mordecai174](https://github.com/mordecai174)
 * [ ] Variable Width and Height
 * [ ] Optional Timezone offset
 * [ ] Dark or Light option
+* [ ] Tweak animation speed of seconds... (rolex mode)
+* [ ] Hour hand should take minutes into account
+* [ ] Hands should not spin backwards after 360
