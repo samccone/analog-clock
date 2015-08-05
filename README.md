@@ -20,7 +20,7 @@ Awesome design by [@mordecai174](https://github.com/mordecai174)
 
 ###### Todo
 
-* [ ] Variable Width and Height
+* [x] Variable Width and Height
 * [ ] Optional Timezone offset
 * [ ] Dark or Light option
 * [ ] Tweak animation speed of seconds... (rolex mode)

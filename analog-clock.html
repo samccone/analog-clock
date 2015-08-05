@@ -9,7 +9,7 @@
     }
   </style>
   <template>
-    <svg x="0px" y="0px" width="500" height="500"
+    <svg viewbox="0 0 305 305" x="0px" y="0px" width$="{{width}}" height$="{{height}}"
       <g id="Layer_1">
       <g>
       <rect x="146.9" fill="#FFFFFF" width="10" height="30"/>
@@ -42,6 +42,16 @@
 
   Polymer({
     is: 'analog-clock',
+    properties: {
+      width: {
+        type: String,
+        value: 305
+      },
+      height: {
+        type: String,
+        value: 305
+      }
+    },
     tick: function() {
       var d = new Date();
       this.$.seconds.style.transform = 'rotate(' + d.getSeconds() / 60 * 360 + 'deg)'
