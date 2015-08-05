@@ -1,0 +1,8 @@
+{
+  "name": "analog-clock",
+  "version": "0.0.1",
+  "dependencies": {
+    "Polymer": "polymer/polymer",
+    "polymer": "^0.4.1"
+  }
+}

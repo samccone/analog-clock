@@ -1,0 +1,61 @@
+<link rel="import" href="node_modules/polymer/polymer.html">
+
+<dom-module id="analog-clock">
+  <style>
+    #seconds, #minutes, #hours {
+      transform-origin: 50% 100%;
+      transform: rotate(0deg);
+      transition: all 1000ms;
+    }
+  </style>
+  <template>
+    <svg x="0px" y="0px" width="500" height="500"
+      <g id="Layer_1">
+      <g>
+      <rect x="146.9" fill="#FFFFFF" width="10" height="30"/>
+      <rect id="minutes" x="146.9" y="40" fill="#FFFFFF" width="10" height="113"/>
+      <rect id="hours" x="146.9" y="70" fill="#FFFFFF" width="10" height="83"/>
+      <rect x="216.2" y="276.3" transform="matrix(-0.8809 0.4733 -0.4733 -0.8809 549.1896 424.4109)" fill="#FFFFFF" width="10" height="10"/>
+      <rect x="146.9" y="273.8" fill="#FFFFFF" width="10" height="30"/>
+      <rect x="77.1" y="17.6" transform="matrix(-0.8809 0.4733 -0.4733 -0.8809 165.1149 3.6909)" fill="#FFFFFF" width="10" height="10"/>
+      <rect x="77.1" y="276.3" transform="matrix(-0.8809 -0.4733 0.4733 -0.8809 21.2759 567.9572)" fill="#FFFFFF" width="10" height="10"/>
+      <rect x="216.2" y="17.6" transform="matrix(-0.8809 -0.4733 0.4733 -0.8809 405.3509 147.2368)" fill="#FFFFFF" width="10" height="10"/>
+      <rect x="24.2" y="228" transform="matrix(-0.5519 -0.8339 0.8339 -0.5519 -148.9517 385.879)" fill="#FFFFFF" width="10" height="10"/>
+      <rect x="269.2" y="65.8" transform="matrix(-0.5519 -0.8339 0.8339 -0.5519 366.5014 338.5128)" fill="#FFFFFF" width="10" height="10"/>
+      <rect x="269" y="228" transform="matrix(-0.5519 0.8339 -0.8339 -0.5519 619.5043 133.2028)" fill="#FFFFFF" width="10" height="10"/>
+
+      <rect x="24.1" y="65.7" transform="matrix(-0.5519 0.8339 -0.8339 -0.5519 104.1569 85.3939)" fill="#FFFFFF" width="10" height="10"/>
+      <rect x="273.8" y="147" fill="#FFFFFF" width="30" height="10"/>
+      <rect y="147" fill="#FFFFFF" width="30" height="10"/>
+      <g id="seconds">
+        <rect x="146.9" y="40" fill="#EF4136" width="10" height="113"/>
+        <circle fill="none" stroke="#EF4136" stroke-width="10" stroke-miterlimit="10" cx="152" cy="34" r="10"/>
+      </g>
+      </g>
+      </g>
+    </svg>
+  </template>
+</dom>
+
+<script>
+  'use strict';
+
+  Polymer({
+    is: 'analog-clock',
+    tick: function() {
+      var d = new Date();
+      this.$.seconds.style.transform = 'rotate(' + d.getSeconds() / 60 * 360 + 'deg)'
+      this.$.minutes.style.transform = 'rotate(' + d.getMinutes() / 60 * 360 + 'deg)'
+
+      var hours = d.getHours() > 12 ? d.getHours() - 12 : d.getHours();
+
+      this.$.hours.style.transform = 'rotate(' + hours / 12 * 360 + 'deg)'
+    },
+    detached: function() {
+      cleatInterval(this.tickInterval);
+    },
+    attached: function() {
+      this.tickInterval = setInterval(this.tick.bind(this), 1000)
+    }
+  })
+</script>
