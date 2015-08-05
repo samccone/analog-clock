@@ -8,6 +8,8 @@ Awesome design by [@mordecai174](https://github.com/mordecai174)
 
 ----
 
+#### Using
+
     npm i analog-clock
 
 ```html
