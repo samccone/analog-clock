@@ -68,7 +68,7 @@
       this.$.hours.style.transform = 'rotate(' + this._getCurrentHour() / 12 * 360 + 'deg)'
     },
     detached: function() {
-      cleatInterval(this.tickInterval);
+      clearInterval(this.tickInterval);
     },
     attached: function() {
       this.tickInterval = setInterval(this.tick.bind(this), 1000)
