@@ -53,10 +53,15 @@
       },
       rotation: {
         type: Object,
-        value: {
-          hours: 0,
-          minutes: 0,
-          seconds: 0
+        value: function() {
+          return {
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            secondTurns: 0,
+            minuteTurns: 0,
+            hourTurns: 0
+          }
         }
       }
     },
@@ -66,19 +71,24 @@
       return currentHour > 12 ? currentHour - 12 : currentHour;
     },
     tick: function() {
+      var self = this;
       var d = new Date();
 
-      this.rotation = {
-        hours: this._getCurrentHour() / 12 * 360,
-        minutes: d.getMinutes() / 60 * 360,
-        seconds: d.getSeconds() / 60 * 360
-      };
+      this.rotation.hours = this._getCurrentHour() / 12 * 360;
+      this.rotation.minutes = d.getMinutes() / 60 * 360;
+      this.rotation.seconds = d.getSeconds() / 60 * 360;
+
+      ['hour', 'minute', 'second'].forEach(function(key) {
+        if (self.rotation[key + 's'] === 0) {
+          self.rotation[key + 'Turns']++;
+        }
+      });
 
       ['transform', 'webkitTransform', 'MozTransform'].forEach(function(key) {
-        this.$.seconds.style[key] = 'rotate(' + this.rotation.seconds + 'deg)';
-        this.$.minutes.style[key] = 'rotate(' + this.rotation.minutes + 'deg)';
-        this.$.hours.style[key] = 'rotate(' + this.rotation.hours + 'deg)';
-      }, this);
+        ['hour', 'minute', 'second'].forEach(function(unit) {
+          self.$[unit + 's'].style[key] = 'rotate(' + (360 * self.rotation[unit + 'Turns'] + self.rotation[unit + 's']) + 'deg)';
+        });
+      });
     },
     detached: function() {
       clearInterval(this.tickInterval);
