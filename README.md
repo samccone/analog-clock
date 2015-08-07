@@ -30,4 +30,4 @@ Awesome design by [@mordecai174](https://github.com/mordecai174)
 * [ ] Dark or Light option
 * [ ] Tweak animation speed of seconds... (rolex mode)
 * [ ] Hour hand should take minutes into account
-* [ ] Hands should not spin backwards after 360
+* [x] Hands should not spin backwards after 360
