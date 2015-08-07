@@ -43,6 +43,10 @@
   Polymer({
     is: 'analog-clock',
     properties: {
+      houroffset: {
+        type: Number,
+        value: 0
+      },
       width: {
         type: String,
         value: 305
@@ -52,14 +56,16 @@
         value: 305
       }
     },
+    _getCurrentHour: function() {
+      var d = new Date();
+      var currentHour = (this.houroffset + d.getHours());
+      return currentHour > 12 ? currentHour - 12 : currentHour;
+    },
     tick: function() {
       var d = new Date();
       this.$.seconds.style.transform = 'rotate(' + d.getSeconds() / 60 * 360 + 'deg)'
       this.$.minutes.style.transform = 'rotate(' + d.getMinutes() / 60 * 360 + 'deg)'
-
-      var hours = d.getHours() > 12 ? d.getHours() - 12 : d.getHours();
-
-      this.$.hours.style.transform = 'rotate(' + hours / 12 * 360 + 'deg)'
+      this.$.hours.style.transform = 'rotate(' + this._getCurrentHour() / 12 * 360 + 'deg)'
     },
     detached: function() {
       cleatInterval(this.tickInterval);

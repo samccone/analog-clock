@@ -18,10 +18,16 @@ Awesome design by [@mordecai174](https://github.com/mordecai174)
 <analog-clock></analog-clock>
 ```
 
+##### Optional Attributes
+
+* `width`
+* `height`
+* `houroffset`
+
 ###### Todo
 
 * [x] Variable Width and Height
-* [ ] Optional Timezone offset
+* [x] Optional Timezone offset
 * [ ] Dark or Light option
 * [ ] Tweak animation speed of seconds... (rolex mode)
 * [ ] Hour hand should take minutes into account
