@@ -50,6 +50,14 @@
       width: {
         type: Number,
         value: 305
+      },
+      rotation: {
+        type: Object,
+        value: {
+          hours: 0,
+          minutes: 0,
+          seconds: 0
+        }
       }
     },
     _getCurrentHour: function() {
@@ -59,15 +67,24 @@
     },
     tick: function() {
       var d = new Date();
-      this.$.seconds.style.transform = 'rotate(' + d.getSeconds() / 60 * 360 + 'deg)'
-      this.$.minutes.style.transform = 'rotate(' + d.getMinutes() / 60 * 360 + 'deg)'
-      this.$.hours.style.transform = 'rotate(' + this._getCurrentHour() / 12 * 360 + 'deg)'
+
+      this.rotation = {
+        hours: this._getCurrentHour() / 12 * 360,
+        minutes: d.getMinutes() / 60 * 360,
+        seconds: d.getSeconds() / 60 * 360
+      };
+
+      ['transform', 'webkitTransform', 'MozTransform'].forEach(function(key) {
+        this.$.seconds.style[key] = 'rotate(' + this.rotation.seconds + 'deg)';
+        this.$.minutes.style[key] = 'rotate(' + this.rotation.minutes + 'deg)';
+        this.$.hours.style[key] = 'rotate(' + this.rotation.hours + 'deg)';
+      }, this);
     },
     detached: function() {
       clearInterval(this.tickInterval);
     },
     attached: function() {
-      this.tickInterval = setTimeout(this.tick.bind(this), 1000)
+      this.tickInterval = setInterval(this.tick.bind(this), 1000)
     }
   })
 </script>
