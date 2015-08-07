@@ -9,7 +9,7 @@
     }
   </style>
   <template>
-    <svg viewbox="0 0 305 305" x="0px" y="0px" width$="{{width}}" height$="{{height}}"
+    <svg viewbox="0 0 305 305" x="0px" y="0px" width$="{{width}}" height$="{{width}}"
       <g id="Layer_1">
       <g>
       <rect x="146.9" fill="#FFFFFF" width="10" height="30"/>
@@ -48,11 +48,7 @@
         value: 0
       },
       width: {
-        type: String,
-        value: 305
-      },
-      height: {
-        type: String,
+        type: Number,
         value: 305
       }
     },
@@ -71,7 +67,7 @@
       clearInterval(this.tickInterval);
     },
     attached: function() {
-      this.tickInterval = setInterval(this.tick.bind(this), 1000)
+      this.tickInterval = setTimeout(this.tick.bind(this), 1000)
     }
   })
 </script>

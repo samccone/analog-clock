@@ -21,7 +21,6 @@ Awesome design by [@mordecai174](https://github.com/mordecai174)
 ##### Optional Attributes
 
 * `width`
-* `height`
 * `houroffset`
 
 ###### Todo
