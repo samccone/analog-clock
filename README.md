@@ -29,5 +29,5 @@ Awesome design by [@mordecai174](https://github.com/mordecai174)
 * [x] Optional Timezone offset
 * [ ] Dark or Light option
 * [ ] Tweak animation speed of seconds... (rolex mode)
-* [ ] Hour hand should take minutes into account
+* [x] Hour hand should take minutes into account
 * [x] Hands should not spin backwards after 360
